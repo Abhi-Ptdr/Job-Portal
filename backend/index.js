@@ -4,6 +4,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectDB from "./utils/db.js"; 
 import dotenv from "dotenv";
+import userRoute from "./routes/user.route.js";
+
 dotenv.config({});
 
 const app = express(); //create an instance of express
@@ -19,6 +21,10 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions)); //use cors middleware with options
+
+
+//api routes
+app.use("/api/v1/user", userRoute);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => { 
