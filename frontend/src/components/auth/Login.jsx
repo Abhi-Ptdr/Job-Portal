@@ -4,7 +4,10 @@ import { Label } from '../ui/label'
 import { Input } from '../ui/input'
 import { RadioGroup } from "@/components/ui/radio-group"
 import { Button } from '../ui/button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { USER_API_END_POINT } from '@/utils/constant'
+import { toast } from 'sonner'
+import axios from 'axios'
 
 function Login() {
 
@@ -18,9 +21,26 @@ function Login() {
     setInput({ ...input, [e.target.name]: e.target.value });
   }
 
+  const navigate = useNavigate();
+
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(input);
+    try {
+      const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
+      if (res.data.success) {
+        navigate("/");
+        toast.success(res.data.message);
+      }
+
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
   }
 
   return (
