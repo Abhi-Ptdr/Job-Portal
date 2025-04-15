@@ -4,10 +4,11 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Button } from "../ui/button.jsx";
 import { LogOut, User2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Navbar() {
 
-  const user = false;
+  const {user} = useSelector(store => store.auth);
 
   return (
     <div>
