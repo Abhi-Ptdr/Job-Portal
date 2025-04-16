@@ -59,32 +59,30 @@ function Navbar() {
                 <Popover>
                   <PopoverTrigger asChild>
                     <Avatar className="cursor-pointer">
-                      <AvatarImage src="https://github.com/shadcn.png" />
+                      <AvatarImage src={user?.profile?.profilePhoto} />
                     </Avatar>
                   </PopoverTrigger>
-                  <PopoverContent className="w-80">
-
-                    <div className="flex gap-2 space-y-2">
-                      <Avatar className="cursor-pointer">
-                        <AvatarImage src="https://github.com/shadcn.png" />
+                  <PopoverContent className="w-80 bg-white">
+                    <div className="flex gap-3 space-y-2">
+                      <Avatar className="cursor-pointer mt-2">
+                        <AvatarImage src={user?.profile?.profilePhoto} />
                       </Avatar>
                       <div>
-                        <h4 className="font-medium">Patel MERN Stack</h4>
-                        <p className="text-sm text-muted-forground">Lorem ipsum dolor sit amet.</p>
+                        <h4 className="font-medium">{user?.fullname}</h4>
+                        <p className="text-sm text-muted-forground">{user?.profile?.bio}</p>
                       </div>
                     </div>
 
-                    <div className="flex flex-col my-4 text-gray-600">
-                      <div className="flex w-fit item-center gap-2 cursor-pointer">
-                        <User2 className="my-2" />
+                    <div className="flex flex-col mt-4 text-gray-600">
+                      <div className="flex w-fit item-center gap-1 cursor-pointer">
+                        <User2 className="mt-1.5" />
                         <Button variant="link"> <Link to="/profile">View Profile</Link></Button>
                       </div>
-                      <div className="flex w-fit item-center gap-2 cursor-pointer">
-                        <LogOut className="my-2" />
+                      <div className="flex w-fit item-center gap-1 cursor-pointer">
+                        <LogOut className="mt-1.5" />
                         <Button onClick={logoutHandler} variant="link">Logout</Button>
                       </div>
                     </div>
-
                   </PopoverContent>
                 </Popover>
               )
