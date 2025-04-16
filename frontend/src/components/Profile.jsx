@@ -53,7 +53,7 @@ function Profile() {
                     <div className='grid w-full max-w-sm items-center gap-1.5'>
                         <Label htmlFor="resume" className="text-md font-bold mt-5">Resume</Label>
                         {
-                            isResume ? <a href="https://www.shutterstock.com/image-vector/circle-line-simple-design-logo-600nw-2174926871.jpg" className='text-blue-500 w-full hover:underline cursor-pointer'>Your Resume</a> : <span> NA </span>
+                            isResume ? <a target='blank' href={user?.profile?.resume} className='text-blue-500 w-full hover:underline cursor-pointer'>{user?.profile?.resumeOriginalName}</a> : <span> NA </span>
                         }
                     </div>
                 </div>
