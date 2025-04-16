@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.route("/register").post(singleUpload, register);
 router.route("/login").post(login);
-router.route("/profile/update").post(isAuthenticated, updateProfile);    //user can only update profile if he is authenticated
+router.route("/profile/update").post(isAuthenticated, singleUpload, updateProfile);    //user can only update profile if he is authenticated
 router.route("/logout").get(logout);
 
 export default router;
