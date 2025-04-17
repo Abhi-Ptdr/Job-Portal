@@ -1,18 +1,38 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Badge } from './ui/badge'
 import { Button } from './ui/button'
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { JOB_API_END_POINT } from '@/utils/constant';
+import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from '@/utils/constant';
 import { setSingleJob } from '@/redux/jobSlice';
+import { toast } from 'sonner';
 
 function JobDescription() {
-  const isApplied = true;
+  // const isApplied = true;
   const param = useParams();
   const jobId = param.id;
   const {singleJob} = useSelector((store) => store.job);
   const {user} = useSelector((store) => store.auth);
+
+  const isInitiallyApplied = singleJob?.applications?.some(application=>application.applicant === user?._id) || false;
+  const [isApplied, setIsApplied] = useState(isInitiallyApplied);
+
+  const applyJobhandler = async () => {
+    try {
+      const res = await axios.get(`${APPLICATION_API_END_POINT}/apply/${jobId}`, { withCredentials: true });
+      if(res.data.success){
+        setIsApplied(true);
+        const updateSingleJob = {...singleJob, applications:[...singleJob.applications,{applicant:user?._id}]} //update the number of applicants
+        dispatch(setSingleJob(updateSingleJob));  //real time update in no. of applicants 
+        toast.success(res.data.message)
+      }
+
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
+  }
 
   const dispatch = useDispatch();
     useEffect(() => {
@@ -21,6 +41,7 @@ function JobDescription() {
                 const res = await axios.get(`${JOB_API_END_POINT}/get/${jobId}`, { withCredentials: true });
                 if (res.data.success) {
                     dispatch(setSingleJob(res.data.job));
+                    setIsApplied(res.data.job.applications.some(application=>application.applicant === user?._id)); //ensure the state is in sync with fetched data
                 }
             } catch (error) {
                 console.log(error);
@@ -41,6 +62,7 @@ function JobDescription() {
           </div>
         </div>
         <Button
+          onClick={isApplied ? null : applyJobhandler}
           className={`mt-4 text-white rounded-lg ${isApplied ? 'bg-gray-600 cursor-not-allowed' : 'bg-[#6A38C2] hover:bg-[#5B30A6]'}`}>
           {isApplied ? 'Already Applied' : 'Apply Now'}
         </Button>
