@@ -7,10 +7,13 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { COMPANY_API_END_POINT } from '@/utils/constant'
 import { toast } from 'sonner'
+import { useDispatch } from 'react-redux'
+import { setSingleCompany } from '@/redux/companySlice'
 
 function CompanyCreate() {
     const navigate = useNavigate();
     const [companyName, setCompanyName] = useState();
+    const dispatch = useDispatch();
 
     const registerNewCompany = async () => {
         try {
@@ -21,6 +24,7 @@ function CompanyCreate() {
                 withCredentials:true           //this is for authentication
             });
             if(res?.data?.success){                         //success status 201 at line 24 in companyController.js
+                dispatch(setSingleCompany(res.data.company)); //to do this we had create companySlice and include it in store.
                 toast.success(res.data.message);            //this message companyController.js line 25
                 const companyId = res?.data?.company?._id;    //because we are returning company in register company controller at backend companyController.js line 26
                 navigate(`/admin/companies/${companyId}`);
