@@ -44,9 +44,21 @@ function Navbar() {
           </div>
           <div className="flex items-center gap-12">
             <ul className="flex font-medium items-center gap-5">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/jobs">Jobs</Link></li>
-              <li><Link to="/browse">Browse</Link></li>
+              {
+                user && user.role === 'recruiter' ? (
+                  <>
+                    <li><Link to="/admin/companies">Companies</Link></li>
+                    <li><Link to="/admin/jobs">Jobs</Link></li>
+                  </>
+                ) : (
+
+                  <>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/jobs">Jobs</Link></li>
+                    <li><Link to="/browse">Browse</Link></li>
+                  </>
+                )
+              }
             </ul>
 
             {
@@ -64,7 +76,7 @@ function Navbar() {
                   </PopoverTrigger>
                   <PopoverContent className="w-80 bg-white">
                     <div className="flex gap-3 space-y-2">
-                      <Avatar className="cursor-pointer mt-2">
+                      <Avatar className="cursor-pointer">
                         <AvatarImage src={user?.profile?.profilePhoto} />
                       </Avatar>
                       <div>
@@ -74,10 +86,14 @@ function Navbar() {
                     </div>
 
                     <div className="flex flex-col mt-4 text-gray-600">
-                      <div className="flex w-fit item-center gap-1 cursor-pointer">
-                        <User2 className="mt-1.5" />
-                        <Button variant="link"> <Link to="/profile">View Profile</Link></Button>
-                      </div>
+                      {
+                        user && user.role === 'student' && (
+                          <div className="flex w-fit item-center gap-1 cursor-pointer">
+                            <User2 className="mt-1.5" />
+                            <Button variant="link"> <Link to="/profile">View Profile</Link></Button>
+                          </div>
+                        )
+                      }
                       <div className="flex w-fit item-center gap-1 cursor-pointer">
                         <LogOut className="mt-1.5" />
                         <Button onClick={logoutHandler} variant="link">Logout</Button>
