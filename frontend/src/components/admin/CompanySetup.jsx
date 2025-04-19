@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../shared/Navbar'
 import { Button } from '../ui/button'
 import { ArrowLeft, Loader2 } from 'lucide-react'
@@ -8,6 +8,7 @@ import axios from 'axios'
 import { COMPANY_API_END_POINT } from '@/utils/constant'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
+import { useSelector } from 'react-redux'
 
 function CompanySetup() {
 
@@ -18,7 +19,8 @@ function CompanySetup() {
     location: "",
     file: null
   });
-
+  
+  const { singleCompany } = useSelector(store => store.company);
   const [loading, setLoading] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
@@ -65,6 +67,19 @@ function CompanySetup() {
       setLoading(false);
     }
   }
+
+  //to get filled data in the form after which user can update any or all of the field
+  //useEffect runs first always no matter where it is placed
+
+  useEffect(() => {
+    setInput({
+      name: singleCompany.name || "",
+      description: singleCompany.description || "",
+      website: singleCompany.website || "",
+      location: singleCompany.location || "",
+      file: singleCompany.file || null
+    })
+  }, [singleCompany]);
 
   return (
     <div>
