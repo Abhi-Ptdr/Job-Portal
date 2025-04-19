@@ -18,26 +18,28 @@ function CompaniesTable() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    <TableCell>
-                        <Avatar>
-                            <AvatarImage src="https://www.shutterstock.com/image-vector/circle-line-simple-design-logo-600nw-2174926871.jpg" />
-                        </Avatar>
-                    </TableCell>
-                    <TableCell> Company Name </TableCell>
-                    <TableCell> 18-04-2025 </TableCell>
-                    <TableCell className='text-right'>
-                        <Popover>
-                            <PopoverTrigger>
-                                <MoreHorizontal className='cursor-pointer'/>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-25 bg-white">
-                                <div className='flex item-center gap-2 w-fit cursor-pointer'>
-                                    <Edit2 className='w-4'/>
-                                    <span>Edit</span>
-                                </div>
-                            </PopoverContent>
-                        </Popover>
-                    </TableCell>
+                    <TableRow>
+                        <TableCell>
+                            <Avatar>
+                                <AvatarImage src="https://www.shutterstock.com/image-vector/circle-line-simple-design-logo-600nw-2174926871.jpg" />
+                            </Avatar>
+                        </TableCell>
+                        <TableCell> Company Name </TableCell>
+                        <TableCell> 18-04-2025 </TableCell>
+                        <TableCell className='text-right'>
+                            <Popover>
+                                <PopoverTrigger>
+                                    <MoreHorizontal className='cursor-pointer'/>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-25 bg-white">
+                                    <div className='flex item-center gap-2 w-fit cursor-pointer'>
+                                        <Edit2 className='w-4'/>
+                                        <span>Edit</span>
+                                    </div>
+                                </PopoverContent>
+                            </Popover>
+                        </TableCell>
+                    </TableRow>
                 </TableBody>
             </Table>
         </div>
