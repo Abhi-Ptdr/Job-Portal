@@ -11,8 +11,6 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
 
-const companyArray = [];
-
 function PostJob() {
     const [input, setInput] = useState({
         title: "",
@@ -170,9 +168,8 @@ function PostJob() {
                             )
                         }
                     </div>
-                    <Button className=''></Button>
                     {
-                        loading ? <Button className='w-full mt-1 bg-[#225966] hover:bg-[#337180] text-white cursor-pointer'><Loader2 className='mr-2 h-4 w-4 animate-spin' />Post New Job</Button> : <Button type="submit" className="w-full mt-1 bg-[#225966] hover:bg-[#337180] text-white cursor-pointer">Post New Job</Button>
+                        loading ? <Button className='w-full mt-4 bg-[#225966] hover:bg-[#337180] text-white cursor-pointer'><Loader2 className='mr-2 h-4 w-4 animate-spin' />Post New Job</Button> : <Button type="submit" className="w-full mt-4 bg-[#225966] hover:bg-[#337180] text-white cursor-pointer">Post New Job</Button>
                     }
                     {
                         companies.length === 0 && <p className='text-xs text-red-600 font-bold text-center my-3'>*Please register a company first, before posting a job</p>

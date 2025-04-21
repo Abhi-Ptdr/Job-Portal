@@ -20,19 +20,19 @@ function Job({job}) {
     return (
         <div className='p-5 rounded-md shadow-xl bg-white border border-gray-100'>
             <div className='flex items-center justify-between'>
-                <p className='text-sm text-gray-500'>{daysAgoFunction(job?.createdAt) === 0 ? "Today" : daysAgoFunction(job?.createdAt)} days ago</p>
-                <Button variant="outline" className="rounded-full border-none" size="icon"><Bookmark /></Button>
+                <p className='text-sm text-gray-500'>{daysAgoFunction(job?.createdAt) === 0 ? "Today" : `${daysAgoFunction(job?.createdAt)} days ago`}</p>
+                <Button variant="outline" className="rounded-full border-none cursor-pointer" size="icon"><Bookmark /></Button>
             </div>
 
             <div className='flex items-center gap-2 my-2'>
                 <Button>
                     <Avatar>
-                        <AvatarImage src="https://www.shutterstock.com/image-vector/circle-line-simple-design-logo-600nw-2174926871.jpg" />
+                        <AvatarImage src={job?.company?.logo} />
                     </Avatar>
                 </Button>
                 <div>
                     <h1 className='font-medium text-lg'>{job?.company?.name}</h1>
-                    <p className='text-sm text-gray-500'>India</p>
+                    <p className='text-sm text-gray-500'>{job?.location}</p>
                 </div>
             </div>
 
@@ -48,8 +48,8 @@ function Job({job}) {
             </div>
 
             <div className='flex items-center gap-4 mt-4'>
-            <Button variant="outline" onClick={() => Navigate(`/description/${job?._id}`)}>Details</Button>
-            <Button className="text-white bg-[#6A38C2] hover:bg-[#5B30A6]">Save For Later</Button>
+            <Button className='cursor-pointer' variant="outline" onClick={() => Navigate(`/description/${job?._id}`)}>Details</Button>
+            <Button className="cursor-pointer text-white bg-[#6A38C2] hover:bg-[#5B30A6]">Save For Later</Button>
             </div>
         </div>
     )
