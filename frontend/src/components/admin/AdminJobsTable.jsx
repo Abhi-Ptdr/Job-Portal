@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '../ui/table'
-import { Edit2, MoreHorizontal } from 'lucide-react'
+import { Edit2, Eye, MoreHorizontal } from 'lucide-react'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -44,10 +44,14 @@ function AdminJobsTable() {
                                         <PopoverTrigger>
                                             <MoreHorizontal className='cursor-pointer' />
                                         </PopoverTrigger>
-                                        <PopoverContent className="w-25 bg-white">
+                                        <PopoverContent className="w-32 bg-white border-gray-200">
                                             <div onClick={() => navigate(`${job._id}`)} className='flex item-center gap-2 w-fit cursor-pointer'>
                                                 <Edit2 className='w-4' />
                                                 <span>Edit</span>
+                                            </div>
+                                            <div onClick={() => navigate(`${job._id}/applicants`)} className='flex item-center gap-2 w-fit cursor-pointer  mt-2'>
+                                                <Eye className='w-4' />
+                                                <span>Applicants</span>
                                             </div>
                                         </PopoverContent>
                                     </Popover>
