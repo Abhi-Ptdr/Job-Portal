@@ -8,11 +8,14 @@ import { Label } from './ui/label'
 import AppliedJobTable from './AppliedJobTable'
 import UpdateProfileDialog from './UpdateProfileDialog'
 import { useSelector } from 'react-redux'
+import useGetAppliedJobs from '@/hooks/useGetAppliedJobs'
+import Footer from './shared/Footer'
 
 // const skills = ["HTML", "CSS", "JavaScript", "React", "Node.js"]
 const isResume = true;
 
 function Profile() {
+    useGetAppliedJobs();
 
     const [open, setOpen] = useState(false);
     const {user} = useSelector(store => store.auth);
@@ -20,11 +23,11 @@ function Profile() {
     return (
         <div>
             <Navbar />
-            <div className='max-w-4xl mx-auto bg-white border boredr-gray-200 my-5 p-8'>
+            <div className='max-w-6xl mx-auto bg-white border boredr-gray-200 my-10 p-8'>
                 <div className='flex justify-between'>
                     <div className='flex items-center gap-4'>
-                        <Avatar className="w-24 h-24 ">
-                            <AvatarImage src="https://www.shutterstock.com/image-vector/circle-line-simple-design-logo-600nw-2174926871.jpg" alt="Profile" />
+                        <Avatar className="w-15 h-15 ">
+                            <AvatarImage src={user?.profile?.profilePhoto} alt="Profile" />
                         </Avatar>
                         <div>
                             <h1 className='font-medium text-xl'>{user?.fullname}</h1>
@@ -58,12 +61,15 @@ function Profile() {
                     </div>
                 </div>
             </div>
-            <div className='max-w-4xl mx-auto bg-while rounded-2xl'>
-                <h1 className='font-bold text-lg my-2'>Applied Jobs</h1>
+            <div className='max-w-6xl mx-auto bg-while rounded-2xl'>
+                <h1 className='font-bold text-lg my-4'>Applied Jobs</h1>
                 {/* Applications table */}
                 <AppliedJobTable/>
             </div>
             <UpdateProfileDialog open={open} setOpen={setOpen}/>
+            <div className='mt-10'>
+                <Footer/>
+            </div>
         </div>
     )
 }
