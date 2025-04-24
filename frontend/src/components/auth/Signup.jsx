@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import Navbar from '../shared/Navbar'
 import { Label } from '../ui/label'
 import { Input } from '../ui/input'
@@ -34,7 +34,7 @@ function Signup() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const { loading } = useSelector((state) => state.auth);
+    const { loading, user } = useSelector((state) => state.auth);
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -69,6 +69,12 @@ function Signup() {
             dispatch(setLoading(false));
         }
     }
+
+    useEffect(() => {
+    if(user){
+        navigate("/");  //if user is already logged in he should not go to the signup page by typing the route like http://localhost:5173/signup
+    }
+    },[])
 
     return (
         <div>

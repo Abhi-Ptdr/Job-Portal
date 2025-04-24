@@ -4,6 +4,7 @@ import FilterCard from './FilterCard'
 import Job from './Job'
 import { useSelector } from 'react-redux';
 import Footer from './shared/Footer';
+import { motion } from 'framer-motion';
 
 // const jobsArray = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -38,10 +39,15 @@ function Jobs() {
                             <div className="flex overflow-y-auto pb-5">
                                 <div className='grid grid-cols-3 gap-4'>
                                     {
-                                        filterJobs?.map((job) => (
-                                            <div key={job._id} >
+                                        filterJobs?.map((job, index) => (
+                                            <motion.div key={job._id} 
+                                                initial={{opacity: 0, startOffset:index}}
+                                                animate={{opacity: 1}}
+                                                exit={{opacity: 0}}
+                                                transition={{duration:1}}
+                                            >
                                                 <Job job={job}/>
-                                            </div>
+                                            </motion.div>
                                         ))
                                     }
                                 </div>
