@@ -9,6 +9,7 @@ import { setUser } from "@/redux/authSlice.js";
 import { toast } from "sonner";
 import axios from "axios";
 import { USER_API_END_POINT } from "@/utils/constant.js";
+import { motion } from "framer-motion";
 
 function Navbar() {
 
@@ -75,6 +76,12 @@ function Navbar() {
                     </Avatar>
                   </PopoverTrigger>
                   <PopoverContent className="w-80 bg-white">
+                    <motion.div
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    exit={{opacity: 0}}
+                    transition={{duration:1}}
+                  >
                     <div className="flex gap-3 space-y-2">
                       <Avatar className="cursor-pointer">
                         <AvatarImage src={user?.profile?.profilePhoto} />
@@ -99,6 +106,7 @@ function Navbar() {
                         <Button onClick={logoutHandler} variant="link">Logout</Button>
                       </div>
                     </div>
+                    </motion.div>
                   </PopoverContent>
                 </Popover>
               )
