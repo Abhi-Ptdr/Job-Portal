@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true })); //parse urlencoded data from re
 app.use(cookieParser()); //parse cookies from request headers
 
 const corsOptions = {
-  origin: "https://job-portal-liart-chi.vercel.app", //allow requests from this origin
+  origin: ["https://job-portal-liart-chi.vercel.app"], //allow requests from this origin
   methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true, //allow credentials (cookies) to be sent with requests
@@ -27,6 +27,10 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions)); //use cors middleware with options
+
+app.get('/', (req, res) => {
+  res.send('API is running...');
+});
 
 //api routes
 app.use("/api/v1/user", userRoute);
