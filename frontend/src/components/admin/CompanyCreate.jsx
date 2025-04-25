@@ -52,7 +52,7 @@ function CompanyCreate() {
 
                 <div className='flex items-center gap-2 my-10'>
                     <Button variant='outline' className='cursor-pointer' onClick={() => navigate('/admin/companies')}>Cancel</Button>
-                    <Button onClick={registerNewCompany} className='bg-black text-white cursor-pointer'>Continue</Button>
+                    <Button onClick={registerNewCompany} className='bg-[#225966] hover:bg-[#337180] text-white cursor-pointer'>Continue</Button>
                 </div>
             </div>
         </div>

@@ -25,7 +25,7 @@ function AdminJobs() {
         <div className='max-w-6xl mx-auto my-10'>
             <div className="flex item-center justify-between my-5">
                 <Input className='w-fit' placeholder='Filter by company, role' onChange={(e) => setInput(e.target.value)}/>
-                <Button onClick={() => navigate('/admin/job/create')} className='bg-black text-white cursor-pointer'>New Job</Button>
+                <Button onClick={() => navigate('/admin/job/create')} className='bg-[#225966] hover:bg-[#337180] text-white cursor-pointer'>New Job</Button>
             </div>
             <AdminJobsTable/>
         </div>
