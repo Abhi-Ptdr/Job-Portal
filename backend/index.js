@@ -20,7 +20,7 @@ app.use(cookieParser()); //parse cookies from request headers
 
 const corsOptions = {
   origin: ["https://job-portal-liart-chi.vercel.app"], //allow requests from this origin
-  methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true, //allow credentials (cookies) to be sent with requests
   optionsSuccessStatus: 204,
