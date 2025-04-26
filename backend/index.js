@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true })); //parse urlencoded data from re
 app.use(cookieParser()); //parse cookies from request headers
 
 const corsOptions = {
-  origin: ["https://hirehive-frontend.onrender.com", "http://localhost:5173/"],
+  origin: ["https://hirehive-frontend.onrender.com", "http://localhost:5173"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
